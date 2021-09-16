@@ -17,30 +17,30 @@ import javax.swing.JButton;
 public class PuzzleApp {
 	
 	Model model;
-	private JFrame frame;
-	JPanel boardPanel;
-	//public PuzzlePanel boardPanel;
+	public JFrame frame;
+	public PuzzlePanel boardPanel;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PuzzleApp window = new PuzzleApp();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					PuzzleApp window = new PuzzleApp();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public PuzzleApp() {
+	public PuzzleApp(Model m) {
+		this.model = m;
 		initialize();
 	}
 
@@ -49,10 +49,10 @@ public class PuzzleApp {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(400, 400, 604, 459);
+		frame.setBounds(400, 400, 646, 507);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		boardPanel = new JPanel();
+		boardPanel = new PuzzlePanel(model);
 		
 		JLabel score = new JLabel("Score");
 		
