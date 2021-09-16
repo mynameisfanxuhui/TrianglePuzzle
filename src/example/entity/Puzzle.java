@@ -46,6 +46,11 @@ public class Puzzle implements Iterable<Node> {
 		return edges;
 	}
 	
+	public ArrayList<Node> getNodes()
+	{
+		return nodes;
+	}
+	
 	public boolean isCovered(Coordinate coord) {
 		for (Node p : nodes) {
 			if (p.contains(coord)) {

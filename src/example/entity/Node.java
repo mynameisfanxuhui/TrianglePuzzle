@@ -3,15 +3,21 @@ package example.entity;
 public class Node {
 	int row;
 	int col;
+	boolean isSelected;
 	
 	public Node() {
+		this.isSelected = false;
 	}
 	
 	public void setRow(int r) { this.row = r; }
 	public void setColumn(int c) { this.col = c; }
 
-	public int getColumn() { return col; }
-	public int getRow() { return row; }
+	public int getColumn() { return this.col; }
+	public int getRow() { return this.row; }
+	public boolean isSelected() 
+	{
+		return this.isSelected;
+	}
 	public Coordinate getLocation () { return new Coordinate(col, row); }
 
 	public boolean contains(Coordinate c) {
@@ -22,11 +28,9 @@ public class Node {
 		return false;
 	}
 
-//	public void move(MoveType dir) {
-//		if (dir == MoveType.None) { return; }
-//		
-//		this.row += dir.deltaR;
-//		this.col += dir.deltaC;
-//	}
+	public void changeState()
+	{
+		this.isSelected = !this.isSelected;
+	}
 
 }

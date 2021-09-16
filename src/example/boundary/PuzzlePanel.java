@@ -66,7 +66,15 @@ public class PuzzlePanel extends JPanel {
 		if (model == null) { return; } // nothing to draw. Only here for windowbuilder.
 		Puzzle puzzle = model.getPuzzle();
 		for (Node p : puzzle) {	
-			g.setColor(Color.red);		
+			if (p.isSelected())
+			{
+				g.setColor(Color.black);
+			}
+			else
+			{
+				g.setColor(Color.white);
+			}
+					
 			Rectangle r = computePointRectangle(p);
 			g.fillRect(r.x, r.y, r.width, r.height);
 		}
