@@ -1,10 +1,10 @@
 package example.entity;
 
-public class Point {
+public class Node {
 	int row;
 	int col;
 	
-	public Point() {
+	public Node() {
 	}
 	
 	public void setRow(int r) { this.row = r; }

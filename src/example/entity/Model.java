@@ -3,7 +3,7 @@ package example.entity;
 public class Model {
 	Puzzle puzzle;
 	boolean gameOver;
-	Point selectedPoint;
+	Node selectedPoint;
 	int numMoves = 0;
 
 	/**
