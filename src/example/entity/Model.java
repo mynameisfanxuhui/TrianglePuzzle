@@ -7,6 +7,7 @@ public class Model {
 	boolean gameOver;
 	ArrayList<Integer> selectedNodes;
 	int numMoves = 0;
+	int basicScore = 60;
 	int score = 60;
 	
 	/**
@@ -112,11 +113,13 @@ public class Model {
 		return null;	
 	}
 	
-	public void swapEdge()
+	public boolean swapEdge()
 	{
 		ArrayList<Edge> swappedEdge = this.getSwappedEdge();
 		if (swappedEdge != null)
 		{
+			this.numMoves += 1;
+			this.basicScore  -= 1;
 			Edge firstEdge = swappedEdge.get(0);
 			Edge secondEdge = swappedEdge.get(1);
 			int tempStart = firstEdge.startPoint;
@@ -125,7 +128,25 @@ public class Model {
 			firstEdge.endPoint = secondEdge.endPoint;
 			secondEdge.startPoint = tempStart;
 			secondEdge.endPoint = tempEnd;
+			this.score = this.basicScore + this.getBounsScore();
+			return true;
+			
 		}
+		return false;
 	}
 	
+	public int getBounsScore()
+	{
+		return 0;
+	}
+	
+	public boolean isWin()
+	{
+		return true;
+	}
+	
+	public void resetGame()
+	{
+		
+	}
 }

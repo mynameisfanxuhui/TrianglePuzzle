@@ -15,8 +15,18 @@ public class SwapController {
 	
 	public void swapEdge()
 	{
-		this.model.swapEdge();
-		this.model.unselectAll();
+		if (this.model.swapEdge())
+		{
+			app.getMoveLabel().setText("" + model.getMoves());
+			app.getScoreLabel().setText("" + model.getScore());
+			this.model.unselectAll();
+		}
+			
+		if (this.model.isWin())
+		{
+			this.app.showWinBoard();
+		}
+		
 		this.app.frame.repaint();
 		
 	}

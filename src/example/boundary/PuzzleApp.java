@@ -20,12 +20,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class PuzzleApp {
 	
 	Model model;
 	public JFrame frame;
 	public PuzzlePanel boardPanel;
+	JLabel moveNumber;
+	JLabel scoreNumber;
+	
 
 //	/**
 //	 * Launch the application.
@@ -44,6 +48,12 @@ public class PuzzleApp {
 //	}
 	
 	public PuzzlePanel getPuzzlePanel() { return boardPanel; }
+	public JLabel getMoveLabel() { return moveNumber; }
+	public JLabel getScoreLabel() { return scoreNumber; }
+	public void showWinBoard()
+	{
+		System.out.println("Winningggggg!");
+	}
 
 	/**
 	 * Create the application.
@@ -70,13 +80,18 @@ public class PuzzleApp {
 		});
 		
 		JLabel score = new JLabel("Score");
+		score.setFont(new Font("Arial Narrow", Font.PLAIN, 18));
 		
-		JLabel scoreNumber = new JLabel("" + model.getScore());
-		scoreNumber.setHorizontalAlignment(SwingConstants.TRAILING);
+		this.scoreNumber = new JLabel("" + model.getScore());
+		scoreNumber.setFont(new Font("Arial Narrow", Font.PLAIN, 18));
+		scoreNumber.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JLabel move = new JLabel("Move");
+		move.setFont(new Font("Arial Narrow", Font.PLAIN, 18));
 		
-		JLabel moveNumber = new JLabel("" + model.getMoves());
+		this.moveNumber = new JLabel("" + model.getMoves());
+		moveNumber.setFont(new Font("Arial Narrow", Font.PLAIN, 18));
+		moveNumber.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JButton resetButton = new JButton("Reset");
 		
@@ -99,27 +114,26 @@ public class PuzzleApp {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(boardPanel, GroupLayout.PREFERRED_SIZE, 310, GroupLayout.PREFERRED_SIZE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(50)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(move, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-									.addGap(109)
-									.addComponent(moveNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-									.addGap(37))
+									.addPreferredGap(ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+									.addComponent(moveNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(score, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-									.addComponent(scoreNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-									.addGap(50))))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(swapButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
-								.addComponent(resetButton, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
-								.addComponent(unselectAllButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
-							.addGap(76))))
+									.addComponent(scoreNumber, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)))
+							.addGap(50))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(unselectAllButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(resetButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(swapButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+							.addGap(85))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -136,12 +150,12 @@ public class PuzzleApp {
 								.addComponent(move)
 								.addComponent(moveNumber))
 							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(unselectAllButton)
-							.addGap(28)
-							.addComponent(swapButton)
-							.addGap(32)
-							.addComponent(resetButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-							.addGap(57))))
+							.addComponent(unselectAllButton, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(swapButton, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(resetButton, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+							.addGap(43))))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
