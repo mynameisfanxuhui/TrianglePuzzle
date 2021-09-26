@@ -18,15 +18,6 @@ public class Node {
 	{
 		return this.isSelected;
 	}
-	public Coordinate getLocation () { return new Coordinate(col, row); }
-
-	public boolean contains(Coordinate c) {
-		if (c.col >= col && c.col < col && c.row >= row && c.row < row) {
-			return true;
-		}
-		
-		return false;
-	}
 
 	public void changeState()
 	{
