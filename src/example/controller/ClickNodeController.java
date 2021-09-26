@@ -21,6 +21,11 @@ public class ClickNodeController {
 	}
 
 	public void process(Point point) {
+		if (model.haveWinned())
+		{
+			app.showAlreadyWinBoard();
+			return;
+		}
 		PuzzlePanel puzzlePanel = app.getPuzzlePanel();
 		Puzzle puzzle = model.getPuzzle();
 		ArrayList<Node> nodes = puzzle.getNodes();

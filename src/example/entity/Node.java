@@ -23,5 +23,13 @@ public class Node {
 	{
 		this.isSelected = !this.isSelected;
 	}
+	
+	public Node copy()
+	{
+		Node n = new Node();
+		n.setColumn(this.col);
+		n.setRow(this.row);
+		return n;
+	}
 
 }

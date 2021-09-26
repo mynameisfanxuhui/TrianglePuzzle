@@ -13,4 +13,11 @@ public class ResetController {
 		this.app = app;
 	}
 	
+	public void reset() {
+		this.model.resetPuzzle();	
+		app.getMoveLabel().setText("" + model.getMoves());
+		app.getScoreLabel().setText("" + model.getScore());
+		this.app.frame.repaint();
+	}
+	
 }

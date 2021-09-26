@@ -2,15 +2,18 @@ package example.entity;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 
 public class Puzzle implements Iterable<Node> {
 	ArrayList<Node> nodes = new ArrayList<>();
-	ArrayList<Edge> edges = new ArrayList<>();
+	HashMap<Point, Edge> edges = new HashMap<Point, Edge>();
+	ArrayList<Node> originalNodes = new ArrayList<>();
+	HashMap<Point, Edge> originalEdges = new HashMap<Point, Edge>();
 	
 	//triangles: (firstPoint(Pair(smallPoint, largePoint), secondPoint, thirdPoint))
-	ArrayList<ArrayList<Point>> triangles = new ArrayList<>();
+	ArrayList<ArrayList<Point>> triangles;
 	public final int numRows;
 	public final int numColumns;
 	
@@ -33,20 +36,21 @@ public class Puzzle implements Iterable<Node> {
 		n.setRow(row);
 		
 		// check overlapping....
-		
 		nodes.add(n);
+		this.originalNodes.add(n.copy());
 	}
 	
-	public void addEdge(int startPoint, int endPoint, int color)
+	public void addEdge(int smallNode, int largeNode, int color)
 	{
+		Point coordinate = new Point(smallNode, largeNode);
 		Edge e = new Edge(color);
-		e.setStart(startPoint);
-		e.setEnd(endPoint);
-		edges.add(e);
+		edges.put(coordinate, e);
+		this.originalEdges.put(coordinate, e.copy());
 	}
 	
 	public void initTriangle()
 	{
+		this.triangles = new ArrayList<>();
 		// T1: (0,1) (0, 2), (1,2)
 		ArrayList<Point> t1 = new ArrayList<Point>();
 		t1.add(new Point(0, 1));
@@ -86,17 +90,11 @@ public class Puzzle implements Iterable<Node> {
 		t6.add(new Point(5, 9));
 		t6.add(new Point(8, 9));
 		this.triangles.add(t6);
-		
-		
-				
-				
-		
-		
-				
 	}
 	
 	
-	public ArrayList<Edge> getEdges()
+	
+	public HashMap<Point, Edge> getEdges()
 	{
 		return edges;
 	}
@@ -107,7 +105,23 @@ public class Puzzle implements Iterable<Node> {
 	}
 	
 
-
+	public void reset()
+	{
+		nodes.clear();
+		for (Node n: this.originalNodes) {
+			nodes.add(n.copy());
+		}
+		
+		edges.clear();
+		for (HashMap.Entry<Point, Edge> entry : this.originalEdges.entrySet()) {
+			Point key = entry.getKey();
+			Edge value = entry.getValue();
+			this.edges.put(key, value.copy());
+		}
+		
+	}
+	
+	
 	@Override
 	public Iterator<Node> iterator() {
 		return nodes.iterator();

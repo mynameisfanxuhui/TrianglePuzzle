@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JPanel;
 
@@ -78,19 +79,20 @@ public class PuzzlePanel extends JPanel {
 			Rectangle r = computePointRectangle(p);
 			g.fillRect(r.x, r.y, r.width, r.height);
 		}
+		HashMap<Point, Edge> edges = puzzle.getEdges();
 		
-		for (Edge e: puzzle.getEdges())
-		{	
-			int startNodeIndex = e.getStart();
-			int endNodeIndex = e.getEnd();
-			Point startCoordinate = this.transferIndex2Coordinate(puzzle.getNodeByIndex(startNodeIndex));
-			Point endCoordinate = this.transferIndex2Coordinate(puzzle.getNodeByIndex(endNodeIndex));
-			int colorNum = e.getColor();
+		for (HashMap.Entry<Point, Edge> entry : edges.entrySet()) {
+			Point key = entry.getKey();
+			Edge value = entry.getValue();
+			int smallNodeIndex = key.x;
+			int largeNodeIndex = key.y;
+			Point startCoordinate = this.transferIndex2Coordinate(puzzle.getNodeByIndex(smallNodeIndex));
+			Point endCoordinate = this.transferIndex2Coordinate(puzzle.getNodeByIndex(largeNodeIndex));
+			int colorNum = value.getColor();
 			if (colorNum == 1) g.setColor(Color.red);
 			else if (colorNum == 2) g.setColor(Color.green);
 			else if (colorNum == 3) g.setColor(Color.blue);
 			g.drawLine(startCoordinate.x + boxSize / 2, startCoordinate.y + boxSize / 2, endCoordinate.x + boxSize / 2, endCoordinate.y + boxSize / 2);
 		}
-		
 	}
 }

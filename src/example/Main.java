@@ -36,9 +36,9 @@ public class Main {
 	puzzle.addEdge(1, 2, 2);
 	puzzle.addEdge(3, 4, 2);
 	puzzle.addEdge(4, 5, 2);
-	puzzle.addEdge(7, 6, 2);
+	puzzle.addEdge(6, 7, 2);
 	puzzle.addEdge(7, 8, 2);
-	puzzle.addEdge(9, 8, 2);
+	puzzle.addEdge(8, 9, 2);
 	
 	puzzle.addEdge(1, 4, 3);
 	puzzle.addEdge(2, 4, 3);

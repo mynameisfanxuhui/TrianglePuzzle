@@ -15,6 +15,11 @@ public class UnselectAllController {
 	
 	public void unselectAll()
 	{
+		if (model.haveWinned())
+		{
+			app.showAlreadyWinBoard();
+			return;
+		}
 		this.model.unselectAll();
 		this.app.frame.repaint();
 	}

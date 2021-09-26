@@ -7,10 +7,12 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
 import example.controller.ClickNodeController;
+import example.controller.ResetController;
 import example.controller.SwapController;
 import example.controller.UnselectAllController;
 import example.entity.Model;
@@ -52,9 +54,13 @@ public class PuzzleApp {
 	public JLabel getScoreLabel() { return scoreNumber; }
 	public void showWinBoard()
 	{
-		System.out.println("Winningggggg!");
+		JOptionPane.showMessageDialog(null, "Congratulations! You Win!!!!");
 	}
-
+	public void showAlreadyWinBoard()
+	{
+		JOptionPane.showMessageDialog(null, "You already win, if you want to play another game, please hit reset button.");
+	}
+	
 	/**
 	 * Create the application.
 	 */
@@ -94,6 +100,11 @@ public class PuzzleApp {
 		moveNumber.setHorizontalAlignment(SwingConstants.RIGHT);
 		
 		JButton resetButton = new JButton("Reset");
+		resetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ResetController(model, PuzzleApp.this).reset();
+			}
+		});
 		
 		JButton swapButton = new JButton("Swap");
 		swapButton.addActionListener(new ActionListener() {

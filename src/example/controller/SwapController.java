@@ -15,19 +15,24 @@ public class SwapController {
 	
 	public void swapEdge()
 	{
+		if (model.haveWinned())
+		{
+			app.showAlreadyWinBoard();
+			return;
+		}
 		if (this.model.swapEdge())
 		{
 			app.getMoveLabel().setText("" + model.getMoves());
 			app.getScoreLabel().setText("" + model.getScore());
 			this.model.unselectAll();
 		}
-			
-		if (this.model.isWin())
+		
+		this.app.frame.repaint();
+		this.model.calculateWin();
+		if (this.model.haveWinned())
 		{
 			this.app.showWinBoard();
 		}
-		
-		this.app.frame.repaint();
 		
 	}
 }
