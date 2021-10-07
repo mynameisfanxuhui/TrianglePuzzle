@@ -23,7 +23,6 @@ public class Puzzle implements Iterable<Node> {
 		this.initTriangle();
 	}
 	
-	public int getColumn() {return this.numColumns;}
 	public int getRow() {return this.numRows;}
 	public Node getNodeByIndex(int index)
 	{

@@ -31,11 +31,16 @@ public class ClickNodeController {
 		ArrayList<Node> nodes = puzzle.getNodes();
 		for (int i = 0; i < nodes.size(); ++ i)
 		{
+			
+			
+			
 			Node node = nodes.get(i);
 			if (!this.contain(node, point, puzzlePanel))
 			{
 				continue;
 			}
+			
+			System.out.print("this is node postion" + point.x + "," + point.y);
 			
 			if (model.canSelect(i))
 			{

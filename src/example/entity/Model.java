@@ -11,7 +11,7 @@ public class Model {
 	int numMoves = 0;
 	int basicScore = 60;
 	int score = 60;
-	boolean isWinning = false;
+	public boolean isWinning = false;
 	
 	/**
 	 * (0,0) (1,0) (2,0) (0,1) (1,1) (2,1) (0,2) (1,2) (0,3) (1,3) (0,4) (1,4)
